@@ -25,6 +25,7 @@
             background-color: var(--bg-color);
             color: var(--text-primary);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         a {
@@ -43,16 +44,46 @@
             padding: 0 20px;
         }
 
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-load {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.3s; }
+        .delay-3 { animation-delay: 0.5s; }
+        .delay-4 { animation-delay: 0.7s; }
+
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        
         header {
-            padding: 80px 0 40px;
+            padding: 100px 0 60px;
             text-align: center;
             border-bottom: 1px solid var(--surface-color);
         }
 
         header h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 10px;
             letter-spacing: 2px;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         header h2 {
@@ -67,33 +98,60 @@
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
-            margin-top: 20px;
+            margin-top: 30px;
         }
 
         .contact-links a {
             background-color: var(--surface-color);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
         }
 
-       
+        .contact-links a:hover {
+            transform: translateY(-3px);
+            background-color: transparent;
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.15);
+        }
+
+        
         section {
-            padding: 60px 0;
+            padding: 80px 0;
             border-bottom: 1px solid var(--surface-color);
         }
 
         section h3 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: var(--accent-color);
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: var(--text-primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        
+        section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 40px;
+            height: 3px;
+            background-color: var(--accent-color);
+            transition: width 0.4s ease;
+        }
+        section:hover h3::after {
+            width: 100%;
         }
 
         
         .profile-text {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: var(--text-secondary);
-            max-width: 800px;
+            max-width: 850px;
+            line-height: 1.8;
         }
 
         
@@ -106,43 +164,70 @@
         
         .skill-box {
             background-color: var(--surface-color);
-            padding: 25px;
-            border-radius: 10px;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .skill-box:hover {
+            transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
         .skill-box h4 {
-            margin-bottom: 15px;
-            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
             border-bottom: 1px solid var(--bg-color);
             padding-bottom: 10px;
+            color: var(--text-primary);
         }
 
         .skill-list {
             list-style-type: none;
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
         }
 
         .skill-list li {
             background-color: var(--bg-color);
-            padding: 5px 12px;
-            border-radius: 5px;
-            font-size: 0.9rem;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.95rem;
             color: var(--text-secondary);
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .skill-list li:hover {
+            background-color: var(--accent-color);
+            color: #fff;
+            transform: scale(1.05);
         }
 
         
         .project-card {
             background-color: var(--surface-color);
-            padding: 25px;
-            border-radius: 10px;
-            margin-bottom: 20px;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border-left: 4px solid transparent;
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateX(10px);
+            background-color: #233044;
+            border-left-color: var(--accent-color);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
         .project-card h4 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 10px;
+            color: var(--text-primary);
         }
 
         .project-card ul {
@@ -152,15 +237,15 @@
         }
 
         .project-card ul li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         
         footer {
             text-align: center;
-            padding: 30px 0;
+            padding: 40px 0;
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
         
@@ -171,6 +256,9 @@
             header h1 {
                 font-size: 2.5rem;
             }
+            .project-card:hover {
+                transform: translateX(5px);
+            }
         }
     </style>
 </head>
@@ -178,32 +266,32 @@
 
     <header>
         <div class="container">
-            <h1>VAIBHAV SAINI</h1>
-            <h2>Computer Science Undergraduate</h2>
-            <div class="contact-links">
+            <h1 class="animate-load delay-1">VAIBHAV SAINI</h1>
+            <h2 class="animate-load delay-2">Computer Science Undergraduate</h2>
+            <div class="contact-links animate-load delay-3">
                 <a href="mailto:itsvaibhav2210@gmail.com">itsvaibhav2210@gmail.com</a>
                 <a href="tel:+917056950035">+91 7056950035</a>
-                <a href="#" target="_blank">LinkedIn</a>
-                <a href="#" target="_blank">GitHub</a>
+                <a href="YOUR_LINKEDIN_URL" target="_blank">LinkedIn</a>
+                <a href="YOUR_GITHUB_URL" target="_blank">GitHub</a>
             </div>
-            <p style="margin-top: 15px; color: var(--text-secondary); font-size: 0.9rem;">Rewari, Haryana, India</p>
+            <p class="animate-load delay-4" style="margin-top: 20px; color: var(--text-secondary); font-size: 0.95rem;">Rewari, Haryana, India</p>
         </div>
     </header>
 
     <main class="container">
         
-        <section id="profile">
+        <section id="profile" class="reveal">
             <h3>Profile</h3>
             <p class="profile-text">
                 Computer Science undergraduate (3rd year, CGPA 8.6) with hands-on experience building applications using LLMs, RAG pipelines, and agentic frameworks. Currently researching the role of Graph Neural Networks (GNNs) in medical science, with a strong foundation in software development across multiple languages and frameworks.
             </p>
         </section>
 
-        <section id="education">
+        <section id="education" class="reveal">
             <h3>Education</h3>
             <div class="project-card">
                 <h4>VIT Bhopal University</h4>
-                <p style="color: var(--accent-color);">B.Tech in Computer Science & Engineering | 2024 - 2028 (Expected)</p>
+                <p style="color: var(--accent-color); font-weight: 500;">B.Tech in Computer Science & Engineering | 2024 - 2028 (Expected)</p>
                 <ul>
                     <li>Currently in 3rd Year</li>
                     <li>CGPA: 8.6</li>
@@ -211,11 +299,11 @@
             </div>
             <div class="project-card">
                 <h4>Raman Munjal Vidya Mandir</h4>
-                <p style="color: var(--accent-color);">Secondary & Senior Secondary Education</p>
+                <p style="color: var(--accent-color); font-weight: 500;">Secondary & Senior Secondary Education</p>
             </div>
         </section>
 
-        <section id="skills">
+        <section id="skills" class="reveal">
             <h3>Technical Skills</h3>
             <div class="grid-2">
                 <div class="skill-box">
@@ -223,7 +311,7 @@
                     <ul class="skill-list">
                         <li>Python</li>
                         <li>OOP</li>
-                        <li>RAG (Retrieval-Augmented Generation)</li>
+                        <li>RAG</li>
                         <li>Generative AI</li>
                         <li>LangChain</li>
                         <li>LangGraph</li>
@@ -245,7 +333,7 @@
             </div>
         </section>
 
-        <section id="projects">
+        <section id="projects" class="reveal">
             <h3>Projects & Research</h3>
             
             <div class="project-card">
@@ -268,11 +356,28 @@
 
     </main>
 
-    <footer>
+    <footer class="reveal">
         <div class="container">
             <p>&copy; 2026 Vaibhav Saini. All rights reserved.</p>
         </div>
     </footer>
 
+    
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        
+        reveal();
+    </script>
 </body>
 </html>
